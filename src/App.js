@@ -26,6 +26,11 @@ class App extends React.Component {
         <Switch>
           <Route
             exact
+            path="/explore/foods/nationalities"
+            component={ ExploreFoodsNationalities }
+          />
+          <Route
+            exact
             path="/foods/:idFoodRecipe/in-progress"
             component={ FoodsDetailsProgress }
           />
@@ -47,11 +52,6 @@ class App extends React.Component {
             exact
             path="/explore/drinks/ingredients"
             component={ ExploreDrinksIngredients }
-          />
-          <Route
-            exact
-            path="/explore/foods/nationalities"
-            component={ ExploreFoodsNationalities }
           />
           <Route exact path="/profile" component={ Profile } />
           <Route exact path="/foods" component={ Foods } />

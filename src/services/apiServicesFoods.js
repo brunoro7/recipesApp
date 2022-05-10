@@ -70,3 +70,19 @@ export const fetchIngredientsFood = async () => {
   // console.log('blalba', data);
   return data;
 };
+
+export const fetchNascionalitesFood = async () => {
+  const urlName = 'https://www.themealdb.com/api/json/v1/1/list.php?a=list';
+  const response = await fetch(urlName);
+  const data = await response.json();
+  // console.log('blalba', data);
+  return data;
+};
+
+export const fetchFoodsByNascionalite = async (nascionalite) => {
+  const urlIngredient = `https://www.themealdb.com/api/json/v1/1/filter.php?a=${nascionalite}`;
+  const response = await fetch(urlIngredient);
+  const data = await response.json();
+  // console.log('ingrediente', data);
+  return data;
+};

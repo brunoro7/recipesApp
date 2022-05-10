@@ -3,7 +3,7 @@ import MyContext from '../context/MyContext';
 
 class NotFound extends React.Component {
   render() {
-    return <h1>NotFound</h1>;
+    return <h1>Not Found</h1>;
   }
 }
 

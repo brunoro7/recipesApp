@@ -5,6 +5,37 @@ import '../pages/FoodDetails.css';
 import '../pages/Recomendation.css';
 
 class BtnStartFoodRecipe extends React.Component {
+  handleSetStorageInProgress = () => {
+    const { objRecipeFood, idFoodRecipe } = this.props;
+
+    // const localStorageInProgress = JSON.parse(localStorage.getItem('inProgressRecipes'));
+
+    const arrayIngredients = [];
+    const arrayMeasures = [];
+    const FIFTEEN = 15;
+    for (let index = 1; index <= FIFTEEN; index += 1) {
+      const strIngredient = `strIngredient${index}`;
+      if ((objRecipeFood)[strIngredient] !== null) {
+        arrayIngredients.push(objRecipeFood[strIngredient]);
+        arrayMeasures.push(objRecipeFood[`strMeasure${index}`]);
+      }
+    }
+    const arrayIngredientAndMeasure = arrayIngredients
+      .filter((element) => element !== '' && element !== ' ')
+      .map((item, index) => (arrayMeasures[index] !== undefined
+        ? `${item} - ${arrayMeasures[index]}` : item));
+    const ingredientsList = arrayIngredientAndMeasure?.map((ingredient) => ingredient);
+
+    // console.log(localStorageInProgress);
+    console.log(ingredientsList, idFoodRecipe);
+    // if () {}
+
+    // localStorage.setItem('inProgressRecipes', JSON.stringify({
+    //   cocktails: {},
+    //   meals: { [idFoodRecipe]: [...ingredientsList] },
+    // }));
+  }
+
   render() {
     const { idFoodRecipe } = this.props;
     return (
@@ -13,6 +44,7 @@ class BtnStartFoodRecipe extends React.Component {
           type="button"
           data-testid="start-recipe-btn"
           className="btnInitRecipeFood"
+          onClick={ this.handleSetStorageInProgress }
         >
           Start Recipe
         </button>
@@ -23,6 +55,7 @@ class BtnStartFoodRecipe extends React.Component {
 
 BtnStartFoodRecipe.propTypes = {
   idFoodRecipe: PropTypes.string.isRequired,
+  objRecipeFood: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 export default BtnStartFoodRecipe;

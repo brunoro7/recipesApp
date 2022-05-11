@@ -4,8 +4,26 @@ import '../pages/DrinkDetails.css';
 import '../pages/Recomendation.css';
 
 class BoxStepInProgressDrinks extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      defaultCheckState: false,
+    };
+  }
+
+  handleChangeCheck = (event) => {
+    const inputCheckClick = event.target.checked;
+
+    this.setState((prevState) => ({
+      defaultCheckState: !prevState.defaultCheckState,
+    }));
+    console.log(inputCheckClick);
+    console.log('oi');
+  }
+
   render() {
     const { objRecipeDrink } = this.props;
+    const { defaultCheckState } = this.state;
 
     const arrayIngredients = [];
     const arrayMeasures = [];
@@ -39,7 +57,8 @@ class BoxStepInProgressDrinks extends React.Component {
                   type="checkbox"
                   name="checkBoxProgress"
                   className="ingredientLineDrink"
-                  checked="true"
+                  checked={ defaultCheckState }
+                  onChange={ this.handleChangeCheck }
                 />
                 { ingredientAndMeasure }
               </label>

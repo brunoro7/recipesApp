@@ -38,10 +38,11 @@ class DrinkDetailsProgress extends React.Component {
   }
 
   handleShareRecipe = () => {
-    const { match } = this.props;
-    const urlRecipeDrink = match.url;
+    const { match: { params } } = this.props;
+    const idRecipeDrink = params.IdDrinkRecipe;
 
-    const urlBase = `http://localhost:3000${urlRecipeDrink}`;
+    const urlBase = `http://localhost:3000/drinks/${idRecipeDrink}`;
+    console.log(urlBase);
 
     const copyUrlRecipe = clipboardCopy(urlBase);
 
@@ -92,14 +93,15 @@ class DrinkDetailsProgress extends React.Component {
     const storageFavoriteDrink = JSON.parse(localStorage.getItem('favoriteRecipes'));
 
     const favoriteRecipeDrink = {
-      id: objRecipeDrink.idMeal,
-      type: 'food',
-      nationality: objRecipeDrink.strArea,
+      id: objRecipeDrink.idDrink,
+      type: 'drink',
+      nationality: '',
       category: objRecipeDrink.strCategory,
-      alcoholicOrNot: '',
-      name: objRecipeDrink.strMeal,
-      image: objRecipeDrink.strMealThumb,
+      alcoholicOrNot: objRecipeDrink.strAlcoholic,
+      name: objRecipeDrink.strDrink,
+      image: objRecipeDrink.strDrinkThumb,
     };
+    // console.log(favoriteRecipeDrink);
 
     if (storageFavoriteDrink === null) {
       // console.log('setou, de null p/ array, o primeiro obj, criando a chave');

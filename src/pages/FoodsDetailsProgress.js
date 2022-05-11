@@ -144,9 +144,8 @@ class FoodsDetailsProgress extends React.Component {
   }
 
   render() {
-    const { objRecipeFood, linkCopy,
-      favoriteIsOn } = this.state;
-    console.log(objRecipeFood);
+    const { objRecipeFood, linkCopy, favoriteIsOn } = this.state;
+    // console.log(objRecipeFood);
 
     return (
       <>

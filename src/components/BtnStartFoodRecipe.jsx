@@ -8,7 +8,10 @@ class BtnStartFoodRecipe extends React.Component {
   handleSetStorageInProgress = () => {
     const { objRecipeFood, idFoodRecipe } = this.props;
 
-    // const localStorageInProgress = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    const localStorageInProgress = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    const arrayInProgressRecipes = Array(Object(localStorageInProgress));
+
+    // console.log(arrayInProgressRecipes);
 
     const arrayIngredients = [];
     const arrayMeasures = [];
@@ -26,14 +29,18 @@ class BtnStartFoodRecipe extends React.Component {
         ? `${item} - ${arrayMeasures[index]}` : item));
     const ingredientsList = arrayIngredientAndMeasure?.map((ingredient) => ingredient);
 
-    // console.log(localStorageInProgress);
-    console.log(ingredientsList, idFoodRecipe);
-    // if () {}
-
-    // localStorage.setItem('inProgressRecipes', JSON.stringify({
-    //   cocktails: {},
-    //   meals: { [idFoodRecipe]: [...ingredientsList] },
-    // }));
+    if (arrayInProgressRecipes === null) {
+      localStorage.setItem('inProgressRecipes', JSON.stringify({
+        ...arrayInProgressRecipes[0],
+        meals: { [idFoodRecipe]: [...ingredientsList] },
+      }));
+    } else {
+      localStorage.setItem('inProgressRecipes', JSON.stringify({
+        ...arrayInProgressRecipes[0],
+        meals: { ...arrayInProgressRecipes[0].meals,
+          [idFoodRecipe]: [...ingredientsList] },
+      }));
+    }
   }
 
   render() {

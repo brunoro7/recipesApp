@@ -194,9 +194,15 @@ class DrinkDetails extends React.Component {
       progressRepiceIsOn, btnStartIsOn, idDrinkRecipe, linkCopy,
       favoriteIsOn } = this.state;
 
+    console.log(objRecipeDrink);
+
     const comparContinueRecipe = (!btnStartIsOn && !recipeIsDone && progressRepiceIsOn)
       ? (<BtnContinueDrinkRecipe idDrinkRecipe={ idDrinkRecipe } />)
-      : (<BtnStartDrinkRecipe idDrinkRecipe={ idDrinkRecipe } />);
+      : (
+        <BtnStartDrinkRecipe
+          idDrinkRecipe={ idDrinkRecipe }
+          objRecipeDrink={ objRecipeDrink }
+        />);
 
     const conditinalBtnStartFinish = (!btnStartIsOn
       && !progressRepiceIsOn && recipeIsDone)

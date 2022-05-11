@@ -5,11 +5,33 @@ import '../pages/FoodDetails.css';
 import '../pages/Recomendation.css';
 
 class BtnStartFoodRecipe extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      arrayCocktailsInProgress: [],
+      arrayMealsInProgress: [],
+    };
+  }
+
+  componentDidMount() {
+    this.setArraysLocalStorage();
+  }
+
+  setArraysLocalStorage = () => {
+    const localStorageInProgress = JSON.parse(localStorage.getItem('inProgressRecipes'));
+
+    if (localStorageInProgress !== null) {
+      const arrayInProgressRecipes = Array(Object.values(localStorageInProgress));
+      this.setState({
+        arrayCocktailsInProgress: arrayInProgressRecipes[0][0],
+        arrayMealsInProgress: arrayInProgressRecipes[0][1],
+      });
+    }
+  }
+
   handleSetStorageInProgress = () => {
     const { objRecipeFood, idFoodRecipe } = this.props;
-
-    const localStorageInProgress = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    const arrayInProgressRecipes = Array(Object(localStorageInProgress));
+    const { arrayCocktailsInProgress, arrayMealsInProgress } = this.state;
 
     // console.log(arrayInProgressRecipes);
 
@@ -29,22 +51,28 @@ class BtnStartFoodRecipe extends React.Component {
         ? `${item} - ${arrayMeasures[index]}` : item));
     const ingredientsList = arrayIngredientAndMeasure?.map((ingredient) => ingredient);
 
-    if (arrayInProgressRecipes === null) {
+    if ((arrayMealsInProgress === null && arrayCocktailsInProgress === null)
+      || (arrayCocktailsInProgress === {} && arrayMealsInProgress === {})) {
       localStorage.setItem('inProgressRecipes', JSON.stringify({
-        ...arrayInProgressRecipes[0],
+        cocktails: {},
         meals: { [idFoodRecipe]: [...ingredientsList] },
       }));
     } else {
       localStorage.setItem('inProgressRecipes', JSON.stringify({
-        ...arrayInProgressRecipes[0],
-        meals: { ...arrayInProgressRecipes[0].meals,
+        cocktails: { ...arrayCocktailsInProgress },
+        meals: { ...arrayMealsInProgress,
           [idFoodRecipe]: [...ingredientsList] },
       }));
     }
   }
 
   render() {
+    // const { arrayMealsInProgress, arrayCocktailsInProgress } = this.state;
     const { idFoodRecipe } = this.props;
+
+    // console.log('cocktails', arrayCocktailsInProgress);
+    // console.log('meals', arrayMealsInProgress);
+
     return (
       <Link to={ `/foods/${idFoodRecipe}/in-progress` }>
         <button

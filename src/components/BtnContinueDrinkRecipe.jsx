@@ -5,9 +5,9 @@ import '../pages/Recomendation.css';
 
 class BtnContinueDrinkRecipe extends React.Component {
   render() {
-    const { idFoodRecipe } = this.props;
+    const { idDrinkRecipe } = this.props;
     return (
-      <Link to={ `/foods/${idFoodRecipe}/in-progress` }>
+      <Link to={ `/foods/${idDrinkRecipe}/in-progress` }>
         <button
           type="button"
           data-testid="start-recipe-btn"
@@ -21,7 +21,7 @@ class BtnContinueDrinkRecipe extends React.Component {
 }
 
 BtnContinueDrinkRecipe.propTypes = {
-  idFoodRecipe: PropTypes.string.isRequired,
+  idDrinkRecipe: PropTypes.string.isRequired,
 };
 
 export default BtnContinueDrinkRecipe;

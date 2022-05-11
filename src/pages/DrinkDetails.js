@@ -126,9 +126,9 @@ class DrinkDetails extends React.Component {
           favoriteIsOn: false,
         });
       }
-      console.log('setou pra false, depois do filtro na montagem');
-      console.log(filterInFavoriteRecipes);
-      console.log(idDrinkRecipe);
+      // console.log('setou pra false, depois do filtro na montagem');
+      // console.log(filterInFavoriteRecipes);
+      // console.log(idDrinkRecipe);
     }
   };
 
@@ -194,7 +194,7 @@ class DrinkDetails extends React.Component {
       progressRepiceIsOn, btnStartIsOn, idDrinkRecipe, linkCopy,
       favoriteIsOn } = this.state;
 
-    console.log(objRecipeDrink);
+    // console.log(objRecipeDrink);
 
     const comparContinueRecipe = (!btnStartIsOn && !recipeIsDone && progressRepiceIsOn)
       ? (<BtnContinueDrinkRecipe idDrinkRecipe={ idDrinkRecipe } />)

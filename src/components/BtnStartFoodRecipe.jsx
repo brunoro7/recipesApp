@@ -10,6 +10,8 @@ class BtnStartFoodRecipe extends React.Component {
     this.state = {
       arrayCocktailsInProgress: [],
       arrayMealsInProgress: [],
+      arrayCocktailsComparProgress: [],
+      arrayMealsComparProgress: [],
     };
   }
 
@@ -19,6 +21,7 @@ class BtnStartFoodRecipe extends React.Component {
 
   setArraysLocalStorage = () => {
     const localStorageInProgress = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    const localStorageComparProgress = JSON.parse(localStorage.getItem('comparProgress'));
 
     if (localStorageInProgress !== null) {
       const arrayInProgressRecipes = Array(Object.values(localStorageInProgress));
@@ -26,6 +29,35 @@ class BtnStartFoodRecipe extends React.Component {
         arrayCocktailsInProgress: arrayInProgressRecipes[0][0],
         arrayMealsInProgress: arrayInProgressRecipes[0][1],
       });
+    }
+
+    if (localStorageComparProgress !== null) {
+      const arrayComparProgress = Array(Object.values(localStorageComparProgress));
+      this.setState({
+        arrayCocktailsComparProgress: arrayComparProgress[0][0],
+        arrayMealsComparProgress: arrayComparProgress[0][1],
+      });
+    }
+  }
+
+  setComparProgressStorage = () => {
+    const localStorageComparProgress = JSON.parse(localStorage.getItem('comparProgress'));
+
+    const { idFoodRecipe } = this.props;
+    const { arrayCocktailsComparProgress, arrayMealsComparProgress } = this.state;
+
+    if ((localStorageComparProgress === null)
+      || (arrayMealsComparProgress === {} && arrayCocktailsComparProgress === {})) {
+      localStorage.setItem('comparProgress', JSON.stringify({
+        cocktails: {},
+        meals: { [idFoodRecipe]: [] },
+      }));
+    } else {
+      localStorage.setItem('comparProgress', JSON.stringify({
+        cocktails: { ...arrayCocktailsComparProgress },
+        meals: { ...arrayMealsComparProgress,
+          [idFoodRecipe]: [...arrayMealsComparProgress] },
+      }));
     }
   }
 
@@ -66,6 +98,11 @@ class BtnStartFoodRecipe extends React.Component {
     }
   }
 
+  handleClickStart = () => {
+    this.handleSetStorageInProgress();
+    this.setComparProgressStorage();
+  }
+
   render() {
     // const { arrayMealsInProgress, arrayCocktailsInProgress } = this.state;
     const { idFoodRecipe } = this.props;
@@ -79,7 +116,7 @@ class BtnStartFoodRecipe extends React.Component {
           type="button"
           data-testid="start-recipe-btn"
           className="btnInitRecipeFood"
-          onClick={ this.handleSetStorageInProgress }
+          onClick={ this.handleClickStart }
         >
           Start Recipe
         </button>

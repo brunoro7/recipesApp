@@ -17,6 +17,7 @@ class FoodsDetailsProgress extends React.Component {
       objRecipeFood: {},
       linkCopy: false,
       favoriteIsOn: false,
+      // btnIsDisable: true,
     };
   }
 
@@ -143,6 +144,10 @@ class FoodsDetailsProgress extends React.Component {
     }
   }
 
+  // handleBtnIsDisable = () => {
+  //   console.log('preciso setar o Botao');
+  // }
+
   render() {
     const { objRecipeFood, linkCopy, favoriteIsOn } = this.state;
     // console.log(objRecipeFood);
@@ -161,7 +166,10 @@ class FoodsDetailsProgress extends React.Component {
           objRecipeFood={ objRecipeFood }
         />
 
-        <BoxInstructionsFood objRecipeFood={ objRecipeFood } />
+        <BoxInstructionsFood
+          objRecipeFood={ objRecipeFood }
+          handleBtnIsDisable={ this.handleBtnIsDisable }
+        />
 
         <BtnFinishedRecipeFood />
       </>

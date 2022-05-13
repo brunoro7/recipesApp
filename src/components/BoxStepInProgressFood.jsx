@@ -2,10 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import '../pages/FoodDetails.css';
 import '../pages/Recomendation.css';
+import CheckLabelProgressFood from './CheckLabelProgressFood';
 
 class BoxStepInProgressFood extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      // ingredientDone: false,
+    };
+  }
+
+  componentDidMount() {
+    // this.handleArrayMeasures();
+  }
+
+  // const { handleBtnIsDisable } = this.props;
+  // handleBtnIsDisable();
+
   render() {
-    const { objRecipeFood } = this.props;
+    const { objRecipeFood, handleBtnIsDisable } = this.props;
 
     const arrayIngredients = [];
     const arrayMeasures = [];
@@ -24,23 +39,22 @@ class BoxStepInProgressFood extends React.Component {
         ? `${item} - ${arrayMeasures[index]}` : item));
     // console.log(arrayIngredientAndMeasure);
 
+    // arrayCompar.length === arrayIngredientAndMeasure
+    // if()
+    // {filtra === todos true } arrayIngredientAndMeasure[0]
+
     return (
       <section className="boxIngredientsFood">
         <h3 className="titleIngredientsFood">Ingredientes</h3>
         <div className="boxListIngredientsFood">
           { arrayIngredientAndMeasure.map((ingredientAndMeasure, index) => (
-            <label
+            <CheckLabelProgressFood
               key={ index }
-              htmlFor="checkBoxProgress"
-              data-testid={ `${index}-ingredient-step` }
-            >
-              <input
-                type="checkbox"
-                name="checkBoxProgress"
-                className="ingredientLineFood"
-              />
-              { ingredientAndMeasure }
-            </label>
+              index={ index }
+              ingredientAndMeasure={ ingredientAndMeasure }
+              handleBtnIsDisable={ handleBtnIsDisable }
+              objRecipeFood={ objRecipeFood }
+            />
           ))}
         </div>
       </section>
@@ -50,6 +64,7 @@ class BoxStepInProgressFood extends React.Component {
 
 BoxStepInProgressFood.propTypes = {
   objRecipeFood: PropTypes.objectOf(PropTypes.any).isRequired,
+  handleBtnIsDisable: PropTypes.func.isRequired,
 };
 
 export default BoxStepInProgressFood;

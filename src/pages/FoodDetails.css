@@ -50,7 +50,10 @@
   margin-left: 10px;
 }
 
-/* .ingredientLineFood {} */
+.ingredientLineFoodComplete {
+  text-decoration: line-through;
+}
+
 .boxInstructions {
   margin-left: 10px;
   width: 95%;
@@ -90,10 +93,11 @@
   font-size: 15px;
   font-weight: 900;
   height: 30px;
-  margin-left: 15%;
-  margin-top: 610px;
+  margin-left: 5%;
+  margin-top: 90vh;
+  overflow: hidden;
   position: fixed;
-  width: 70%;
+  width: 90%;
 }
 
 .btnInitRecipeFood:hover {
@@ -107,10 +111,11 @@
   font-size: 15px;
   font-weight: 900;
   height: 35px;
-  margin-left: 10%;
-  margin-top: 605px;
+  margin-left: 5%;
+  margin-top: 90vh;
+  overflow: hidden;
   position: fixed;
-  width: 250px;
+  width: 90%;
 }
 
 /* .boxMsgFinished {} */

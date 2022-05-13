@@ -84,11 +84,11 @@
   color: black;
   font-size: 15px;
   font-weight: 900;
-  height: 30px;
-  margin-left: 15%;
+  height: 35px;
+  margin-left: 5%;
   margin-top: 610px;
   position: fixed;
-  width: 70%;
+  width: 90%;
 }
 
 .btnInitRecipeDrink:hover {
@@ -102,8 +102,8 @@
   font-size: 15px;
   font-weight: 900;
   height: 35px;
-  margin-left: 10%;
-  margin-top: 605px;
+  margin-left: 5%;
+  margin-top: 610px;
   position: fixed;
-  width: 250px;
+  width: 90%;
 }

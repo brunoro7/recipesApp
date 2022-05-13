@@ -91,8 +91,10 @@ class FoodsDetails extends React.Component {
     const urlRecipeFood = match.url;
 
     const urlBase = `http://localhost:3000${urlRecipeFood}`;
+    console.log(urlBase);
 
     const copyUrlRecipe = clipboardCopy(urlBase);
+    console.log(copyUrlRecipe);
 
     if (copyUrlRecipe) {
       this.setState({
@@ -199,7 +201,11 @@ class FoodsDetails extends React.Component {
 
     const comparContinueRecipe = (!btnStartIsOn && !recipeIsDone && progressRepiceIsOn)
       ? (<BtnContinueFoodRecipe idFoodRecipe={ idFoodRecipe } />)
-      : (<BtnStartFoodRecipe idFoodRecipe={ idFoodRecipe } />);
+      : (
+        <BtnStartFoodRecipe
+          objRecipeFood={ objRecipeFood }
+          idFoodRecipe={ idFoodRecipe }
+        />);
 
     const conditinalBtnStartFinish = (!btnStartIsOn
       && !progressRepiceIsOn && recipeIsDone)
